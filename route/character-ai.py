@@ -14,12 +14,21 @@ async def main(request_args, request_headers, request_payload):
   if not character_id:
     return Response(json.dumps({"error": "Missing character id"}),status=400)
 
-  result = {}
-  client = Client()
-  await client.authenticate_with_token(character_token)
-  chat = client.create_or_continue_chat(character_id)
+  try:
+    client = Client()
+    await client.authenticate(character_token)
+    chat, getting = await client.chat.create_chat(character_id)
 
-  result["message"] = await chat.send_
+    response = await client.chat.send_message(character_id, chat.chat_id, question)
+    result = response.get_primary_candidate().text
+
+    return Response(json.dumps({
+      "result": result,
+      "getting": getting.get_primary_candidate().text
+    }),
+    status=200)
+  except Exception as e:
+    return Response(json.dumps({"error": str(e)}), status=500)
 
 def callback(request_args, request_headers, request_payload):
   return asyncio.run(main(request_args, request_headers, request_payload))

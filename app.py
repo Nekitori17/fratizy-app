@@ -2,7 +2,6 @@ from flask import Flask, request, Response
 import os
 import json
 import importlib
-import requests
 
 app = Flask(__name__)
 
