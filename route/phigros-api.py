@@ -1,7 +1,6 @@
 from flask import Response
 import json
-import os
-import request
+import requests
 
 def callback(request_args, request_headers, request_payload):
   handle_name = request_args.get("handle")

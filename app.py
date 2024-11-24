@@ -13,7 +13,7 @@ def init():
 @app.route("/endpoint", methods=["POST"])
 def main():
   request_query = request.args.get("q")
-  request_payload = request.get_json(force=True) if request.get_json() else {}
+  request_payload = json.loads(request.data.decode("utf-8")) or {}
 
   if not request_query:
     return Response(json.dumps({"error": "No query provided"}), status=400)
