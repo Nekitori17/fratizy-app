@@ -1,6 +1,6 @@
+import json
 from flask import Response
 from googletrans import Translator
-import json
 
 def callback(request_args, request_headers, request_payload):
   target_language = request_payload.get("lang")

@@ -1,7 +1,7 @@
-from flask import Response
-from PyCharacterAI import Client
 import json
 import asyncio
+from flask import Response
+from PyCharacterAI import Client
 
 async def main(request_args, request_headers, request_payload):
   character_token = request_headers.get("Authorization")

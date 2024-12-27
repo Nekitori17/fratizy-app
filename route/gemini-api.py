@@ -1,7 +1,7 @@
-from flask import Response
-import google.generativeai as gen_ai
-from utils.get_timestamp import *
 import json
+from flask import Response
+from utils.get_timestamp import *
+import google.generativeai as gen_ai
 
 def callback(request_args, request_headers, request_payload):
   gemini_token = request_headers.get("Authorization")
