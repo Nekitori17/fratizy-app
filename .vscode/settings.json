@@ -3,6 +3,9 @@
   "IDX.aI.enableCodebaseIndexing": true,
   "python.analysis.autoImportCompletions": true,
   "cSpell.words": [
+    "genai",
+    "generativeai",
+    "googletrans",
     "Phigros"
   ]
 }

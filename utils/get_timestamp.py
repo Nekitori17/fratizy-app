@@ -1,7 +1,7 @@
-from datetime import datetime
 import pytz
+from datetime import datetime
 
-def get_timestamp(locate_timezone):
+def get_timestamp(locate_timezone: str = None):
   if locate_timezone:
     try:
       timezone = pytz.timezone(locate_timezone)

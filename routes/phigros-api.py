@@ -1,14 +1,12 @@
 import json
-import re
-from urllib import response
-import requests
 from flask import Response
-from PhigrosAPILib.Core import PhigrosAPI
+from PhigrosAPILib import PhigrosAPI
+from werkzeug.datastructures import *
 
-def callback(request_args, request_headers, request_payload):
+def callback(request_args: MultiDict[str, str], request_headers: Headers, request_payload: dict):
   handle_name = request_args.get("handle")
   session_token = request_headers.get("Authorization")
-  overflow = request_payload.get("overflow") or 0
+  overflow = int(request_payload.get("overflow")) or 0
 
   if not session_token:
     return Response(json.dumps({"error": "Missing Authorization header"}), status=401)
@@ -24,7 +22,7 @@ def callback(request_args, request_headers, request_payload):
     elif handle_name == "summary":
       response = client.player_summary
     elif handle_name == "records":
-      response = client.records
+      response = client.get_records(overflow)
     elif handle_name == "bests":
       response = client.get_best_records(int(overflow))
     else:
