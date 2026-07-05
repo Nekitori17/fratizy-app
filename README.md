@@ -1,2 +1,2 @@
 # fratizy-app
-My Api (Really Bad)
+My Private API
